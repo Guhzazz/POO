@@ -7,7 +7,11 @@
  *
  * @author valer
  */
-public abstract class Registros {
+public abstract class Registros{
+    /**
+     * Classe abstrata para facilitar a criação dos registros para
+     * as classes "base"(Cliente, animal, funcionário, atendimento).
+     */
     
     public Registros(){
         super();

@@ -9,10 +9,11 @@
  */
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class Registro_An extends Registros {
     private Animal animal;
-    HashMap<String, Animal> RegistroAn = new HashMap<>();
+    HashMap<Integer, Animal> RegistroAn = new HashMap<>();
     
     
     public Registro_An(){
@@ -21,14 +22,17 @@ public class Registro_An extends Registros {
     
     @Override
     public void Consulta(){
+        /**
+         * Busca por um animal em RegistroAn
+         */
         Scanner leitura = new Scanner(System.in);
         if (RegistroAn.isEmpty()){
             System.out.println("Nenhum animal cadastrado para consulta.");
         }
-        System.out.println("Digite o nome do animal para consulta\n");
-        String nomeConsulta = leitura.nextLine();
-        if (RegistroAn.containsKey(nomeConsulta)){
-            Animal animal = RegistroAn.get(nomeConsulta);
+        System.out.println("Digite o id do animal para consulta\n");
+        int idConsulta = leitura.nextInt();
+        if (RegistroAn.containsKey(idConsulta)){
+            Animal animal = RegistroAn.get(idConsulta);
             System.out.println("Resultado da Consulta:\n");
             System.out.println("Nome: "+ animal.getNome());
             System.out.println("Peso: "+ animal.getPeso());
@@ -41,14 +45,17 @@ public class Registro_An extends Registros {
     }
     @Override
     public void Remove(){
+        /**
+         * Remove um animal de RegistroAn
+         */
         Scanner leitura = new Scanner(System.in);
         if (RegistroAn.isEmpty()){
             System.out.println("Nenhum animal para remover.");
         }
-        System.out.println("Digite o nome do animal para remoção:\n");
-        String nomeRemocao = leitura.nextLine();
-        if (RegistroAn.containsKey(nomeRemocao)){
-            RegistroAn.remove(nomeRemocao);
+        System.out.println("Digite o id do animal para remoção:\n");
+        int idRemocao = leitura.nextInt();
+        if (RegistroAn.containsKey(idRemocao)){
+            RegistroAn.remove(idRemocao);
             System.out.println("Animal removido com sucesso!");
         }
         else{
@@ -57,22 +64,36 @@ public class Registro_An extends Registros {
     }
     
     public void Adiciona(Animal animal){
-        RegistroAn.put(animal.getNome(), animal);
+        /**
+         * Adiciona um novo animal à RegistroA
+         */
+
+        if (RegistroAn.containsKey(animal.getId())){
+            System.out.println("Id de animal já registrado.");
+        }
+        else{
+        RegistroAn.put(animal.getId(), animal);
         System.out.println("Animal adicionado com sucesso!");
+        }
     }
+        
     
     @Override
-     public void Alteracao() {
+     public void Alteracao()
+             /**
+              * Altera um animal já existente em RegistroAn
+              */
+     throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroAn.isEmpty()) {
             System.out.println("Nenhum animal cadastrado para alteração.");
         }
 
-        System.out.println("Digite o nome do animal que deseja alterar:");
-        String nomeOriginal = leitura.nextLine();
+        System.out.println("Digite o id do animal que deseja alterar:");
+        int idOriginal = leitura.nextInt();
 
-        if (RegistroAn.containsKey(nomeOriginal)) {
-            Animal animalParaAlterar = RegistroAn.get(nomeOriginal);
+        if (RegistroAn.containsKey(idOriginal)) {
+            Animal animalParaAlterar = RegistroAn.get(idOriginal);
 
             System.out.println("Digite o novo nome do animal:");
             String novoNome = leitura.nextLine();
@@ -85,13 +106,13 @@ public class Registro_An extends Registros {
             leitura.nextLine();
 
            
-            RegistroAn.remove(nomeOriginal);
+            RegistroAn.remove(idOriginal);
 
             animalParaAlterar.setNome(novoNome);
             animalParaAlterar.setPeso(novoPeso);
             animalParaAlterar.setAltura(novaAltura);
 
-            RegistroAn.put(animalParaAlterar.getNome(), animalParaAlterar);
+            RegistroAn.put(animalParaAlterar.getId(), animalParaAlterar);
 
             System.out.println("Dados do animal alterados com sucesso!");
 
@@ -103,6 +124,9 @@ public class Registro_An extends Registros {
 
     @Override
     public void MostraRelatorio(){
+        /**
+         * Exibe todos os animais cadastrados em RegistroAn
+         */
         if (RegistroAn.isEmpty()){
             System.out.println("Nenhum animal cadastrado.");
         }

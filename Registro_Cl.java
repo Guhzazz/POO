@@ -9,6 +9,7 @@
  */
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class Registro_Cl extends Registros {
     private Cliente cliente;
@@ -19,7 +20,11 @@ public class Registro_Cl extends Registros {
     }
     
     @Override
-    public void Consulta(){
+    public void Consulta()
+            /**
+             * Busca por um dado cliente dentro da estrutura Hash RegistroCl
+             */
+        throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroCl.isEmpty()){
             System.out.println("Nenhum cliente registrado para consulta.");
@@ -42,7 +47,11 @@ public class Registro_Cl extends Registros {
     }
     
     @Override
-    public void Remove(){
+    public void Remove()
+            /**
+             * Remove um dado cliente da estrutura Hash RegistroCl
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroCl.isEmpty()){
             System.out.println("Nenhum cliente para remover.");
@@ -60,13 +69,21 @@ public class Registro_Cl extends Registros {
     }
     
     
-    public void Adiciona(Cliente cliente){
+    public void Adiciona(Cliente cliente)
+            /**
+             * Adiciona um novo cliente à RegistroCl
+             */
+    throws InputMismatchException{
         RegistroCl.put(cliente.getCPF(), cliente);
         System.out.println("Cliente registrado com sucesso!");
     }
     
     @Override
-    public void Alteracao(){
+    public void Alteracao()
+            /** 
+             * Altera os dados de um cliente já registrado em RegistroCl
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroCl.isEmpty()){
             System.out.println("Nenhum cliente cadastrado para alteração");
@@ -109,6 +126,9 @@ public class Registro_Cl extends Registros {
     
     @Override
     public void MostraRelatorio(){
+        /**
+         * Mostra um relatório de todos os clientes cadasatrados em RegistroCl
+         */
         if (RegistroCl.isEmpty()){
             System.out.println("Nenhum cliente cadastrado.");
         }

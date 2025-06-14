@@ -9,6 +9,7 @@
  */
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class Registro_At extends Registros{
     private Atendimento atendimento;
@@ -18,7 +19,11 @@ public class Registro_At extends Registros{
     }
     
     @Override
-    public void Consulta(){
+    public void Consulta()
+            /**
+             * Busca por um atendimento em RegistroAt
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroAt.isEmpty()){
             System.out.println("Nenhum atendimento registrado para consulta.");
@@ -26,11 +31,13 @@ public class Registro_At extends Registros{
         System.out.println("Digite o código do atendimento para consulta.");
         int codigoConsulta = leitura.nextInt();
         if(RegistroAt.containsKey(codigoConsulta)){
+            Atendimento atendimentoEncontrado = RegistroAt.get(codigoConsulta);
+            //inicializei o objeto pra consertar o erro null
             System.out.println("Resultado da consulta:\n");
             System.out.println("Código do atendimento: "+ codigoConsulta);
-            System.out.println("Cliente: "+atendimento.getCliente().getNome());
-            System.out.println("Animal: "+atendimento.getAnimal().getNome());
-            System.out.println("Funcionário: "+atendimento.getFuncionario().getNome());
+            System.out.println("Cliente: "+atendimentoEncontrado.getCliente().getNome());
+            System.out.println("Animal: "+atendimentoEncontrado.getAnimal().getNome());
+            System.out.println("Funcionário: "+atendimentoEncontrado.getFuncionario().getNome());
         }
         else{
             System.out.println("Atendimento não encontrado.");
@@ -39,7 +46,11 @@ public class Registro_At extends Registros{
     }
     
     @Override
-    public void Remove(){
+    public void Remove()
+            /**
+             * Remove um atendimento de RegistroAt
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroAt.isEmpty()){
             System.out.println("Nenhum atendimento para remover.");
@@ -57,13 +68,21 @@ public class Registro_At extends Registros{
     }
     
 
-    public void Adiciona(Atendimento atendimento){
+    public void Adiciona(Atendimento atendimento)
+            /**
+             * Adiciona um novo atendimento à RegistroAt
+             */
+    throws InputMismatchException{
         RegistroAt.put(atendimento.getCodigo(), atendimento);
         System.out.println("Atendimento registrado com sucesso!");
     }
     
     @Override
-    public void Alteracao(){
+    public void Alteracao()
+            /**
+             * Altera um objeto já existente em RegistroAt
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroAt.isEmpty()){
             System.out.println("Nenhum atendimento cadastrado para alteração");
@@ -111,6 +130,9 @@ public class Registro_At extends Registros{
     
     @Override
     public void MostraRelatorio(){
+        /**
+         * Exibe um relatório de todos os atendimentos cadastrados
+         */
         if (RegistroAt.isEmpty()){
             System.out.println("Nenhum atendimento registrado.");
         }

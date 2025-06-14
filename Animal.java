@@ -9,6 +9,7 @@
  */
 public class Animal {
     private String nome;
+    private int id;
     private float peso;
     private float altura;
     
@@ -16,8 +17,9 @@ public class Animal {
         
     }
     
-    public Animal(String nome, float peso, float altura){
+    public Animal(String nome, float peso, float altura, int id){
         this.nome = nome;
+        this.id = id;
         this.peso = peso;
         this.altura = altura;
     }
@@ -33,9 +35,18 @@ public class Animal {
     public float getAltura() {
         return altura;
     }
+    
+    public int getId(){
+        return id;
+    }
+    
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+    
+    public void setId(int id){
+        this.id = id;
     }
 
     public void setPeso(float peso) {

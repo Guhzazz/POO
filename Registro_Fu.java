@@ -9,6 +9,7 @@
  */
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 
 public class Registro_Fu extends Registros{
     private Funcionario funcionario;
@@ -18,7 +19,11 @@ public class Registro_Fu extends Registros{
         
     }
     @Override
-    public void Consulta(){
+    public void Consulta()
+            /**
+             * Busca por um funcionário em RegistroFu
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if(RegistroFu.isEmpty()){
             System.out.println("Nenhum funcionário registrado para consulta.");
@@ -26,6 +31,7 @@ public class Registro_Fu extends Registros{
         System.out.println("Digite o Número de matrícula do funcionário para consulta");
         int numeroConsulta = leitura.nextInt();
         Funcionario funcionarioEncontrado = RegistroFu.get(numeroConsulta);
+        // inicializei o objeto pra consertar o erro null
         if(RegistroFu.containsKey(numeroConsulta)){
             System.out.println("Resultado da consulta:\n");
             System.out.println("Nome: "+funcionarioEncontrado.getNome());
@@ -40,7 +46,11 @@ public class Registro_Fu extends Registros{
         
     }
     @Override
-    public void Remove(){
+    public void Remove()
+            /**
+             * Remove um funcionário de RegistroFu
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroFu.isEmpty()){
             System.out.println("Nenhum funcionário para remover.");
@@ -57,13 +67,21 @@ public class Registro_Fu extends Registros{
     }
 
     
-    public void Adiciona(Funcionario funcionario){
+    public void Adiciona(Funcionario funcionario)
+            /**
+             * Adiciona um novo funcionário à RegistroFu
+             */
+    throws InputMismatchException{
         RegistroFu.put(funcionario.getNumeroMatricula(), funcionario);
         System.out.println("Funcionário registrado com sucesso!");
     }
     
     @Override
-    public void Alteracao(){
+    public void Alteracao()
+            /**
+             * Altera um funcionário já existente em RegistroFu
+             */
+    throws InputMismatchException{
         Scanner leitura = new Scanner(System.in);
         if (RegistroFu.isEmpty()){
             System.out.println("Nenhum funcionário cadastrado para alteração");
@@ -103,6 +121,9 @@ public class Registro_Fu extends Registros{
     
     @Override
     public void MostraRelatorio(){
+        /**
+         * Exibe um relatório de todos os funcionários cadastrados
+         */
         if (RegistroFu.isEmpty()){
             System.out.println("Nenhum funcionário cadastrado.");
         }
