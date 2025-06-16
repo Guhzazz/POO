@@ -30,11 +30,14 @@ public class Registro_At extends Registros{
         }
         System.out.println("Digite o código do atendimento para consulta.");
         int codigoConsulta = leitura.nextInt();
+        leitura.nextLine();// tive que adicionar para a quebra de linha funcionar direito
+        
         if(RegistroAt.containsKey(codigoConsulta)){
             Atendimento atendimentoEncontrado = RegistroAt.get(codigoConsulta);
             //inicializei o objeto pra consertar o erro null
             System.out.println("Resultado da consulta:\n");
             System.out.println("Código do atendimento: "+ codigoConsulta);
+            System.out.println("Data do atendimento: "+ atendimentoEncontrado.getData());
             System.out.println("Cliente: "+atendimentoEncontrado.getCliente().getNome());
             System.out.println("Animal: "+atendimentoEncontrado.getAnimal().getNome());
             System.out.println("Funcionário: "+atendimentoEncontrado.getFuncionario().getNome());

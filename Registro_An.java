@@ -91,6 +91,7 @@ public class Registro_An extends Registros {
 
         System.out.println("Digite o id do animal que deseja alterar:");
         int idOriginal = leitura.nextInt();
+        leitura.nextLine();// tive que adicionar para a quebra de linha funcionar direito
 
         if (RegistroAn.containsKey(idOriginal)) {
             Animal animalParaAlterar = RegistroAn.get(idOriginal);

@@ -90,6 +90,7 @@ public class Registro_Cl extends Registros {
         }
         System.out.println("Digite o CPF do cliente que deseja alterar.");
         long cpfOriginal = leitura.nextLong();
+        leitura.nextLine(); // tive que adicionar para a quebra de linha funcionar direito
         
         if(RegistroCl.containsKey(cpfOriginal)){
             Cliente clienteParaAlterar = RegistroCl.get(cpfOriginal);

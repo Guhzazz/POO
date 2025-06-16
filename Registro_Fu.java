@@ -88,6 +88,7 @@ public class Registro_Fu extends Registros{
         }
         System.out.println("Digite o numero de matrícula do cliente que deseja alterar.");
         int nmrOriginal = leitura.nextInt();
+        leitura.nextLine();// tive que adicionar para a quebra de linha funcionar direito
         
         if(RegistroFu.containsKey(nmrOriginal)){
             Funcionario funcionarioParaAlterar = RegistroFu.get(nmrOriginal);
